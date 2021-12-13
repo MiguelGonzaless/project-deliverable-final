@@ -34,8 +34,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Ice Cream Shop</h1>
-      <button id="create_order" className="button" onClick={modal_display}>Create Order</button>
+      <h1 class="h1">Ice Cream Shop</h1>
+      <button id="create_order" className="button" onClick={modal_display}><span>Create Order</span></button>
 
       <div id="myModal" className="modal">
         <div className="modal-content">
@@ -63,7 +63,7 @@ function App() {
                 </select>
             </div>
         
-            <button onClick={submitReview}>Submit</button>
+            <button onClick={submitReview} className="button"><span>Submit</span></button>
           </div>
         </div>
       </div>
