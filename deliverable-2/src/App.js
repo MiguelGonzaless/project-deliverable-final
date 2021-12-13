@@ -9,6 +9,7 @@ function App() {
   const [Size, setSize] = useState('');
   const [Drink_ID, setDrinkID] = useState('');
   const [Txn_hash, setTxnhash] = useState('');
+  const [Base_recipe, setBaseIngredient] = useState('');
 
   const submitReview = () => {
     let order_id = (Math.floor(Math.random() * 10 * (100)));
@@ -17,11 +18,15 @@ function App() {
     setDrinkID(drink_id);
     let r = (Math.random() + 1).toString(36).substring(7);
     let txn = crypto.createHash('sha1').update(r).digest('hex');
-    setTxnhash(txn)
-    console.log(Order_slip_ID, Size, Drink_ID, Txn_hash)
+    setTxnhash(txn);
+
+    setBaseIngredient(parseInt(Base_recipe))
+
+    console.log(Order_slip_ID, Drink_ID, Txn_hash);
+    console.log(Drink_ID, Base_recipe, Size);
 
     Axios.post('http://localhost:3001/api/insert', {
-      Size: Size, Drink_ID: Drink_ID, Txn_hash: Txn_hash, Order_slip_ID: Order_slip_ID
+      Size: Size, Drink_ID: Drink_ID, Txn_hash: Txn_hash, Order_slip_ID: Order_slip_ID, Base_recipe: Base_recipe
     }).then(() => {
       alert("successful insert")
     })
@@ -50,11 +55,11 @@ function App() {
             <div className='choices'>
               <label htmlFor="flavor">Choose a flavor:</label>
               <select name="flavor" id="flavor" onChange={(e) => {
-                  // comment in setting;
+                  setBaseIngredient(e.target.value);
                 }}>
-                  <option value="Chocolate">Cookies N Cream</option>
-                  <option value="Strawberry">Strawberry</option>
-                  <option value="Soy Vanilla">Soy Vanilla</option>
+                  <option value="00">Soy Vanilla</option>
+                  <option value="01">Cookies N Cream</option>
+                  <option value="02">Strawberry</option>
                 </select>
             </div>
         
